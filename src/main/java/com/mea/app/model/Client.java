@@ -21,6 +21,9 @@ public interface Client {
 	public void setPhoneNumber(String phoneNumber);
 	public String getPhoneNumber();
 	
+	public void setNotes(String notes);
+	public String getNotes();
+	
 	public void addProduct(ProductImpl product);
 	public List<ProductImpl> getAllProducts();
 	

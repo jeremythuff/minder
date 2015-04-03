@@ -1,4 +1,5 @@
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/impl/ApiResImpl.java
+/home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/Reminder.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/controller/ClientController.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/repo/ProductRepo.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/controller/ProductController.java
@@ -6,8 +7,11 @@
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/Product.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/WebServerInit.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/impl/ProductImpl.java
+/home/huff/development/java/apps/minder/src/main/java/com/mea/app/controller/ReminderController.java
+/home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/impl/ReminderImpl.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/config/Config.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/config/SecurityConfig.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/Client.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/APIres.java
+/home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/repo/ReminderRepo.java
 /home/huff/development/java/apps/minder/src/main/java/com/mea/app/model/impl/ClientImpl.java

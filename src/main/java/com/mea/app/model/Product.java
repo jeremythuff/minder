@@ -1,5 +1,9 @@
 package com.mea.app.model;
 
+import java.util.List;
+
+import com.mea.app.model.impl.ReminderImpl;
+
 public interface Product {
 	
 	public long getId();
@@ -15,6 +19,12 @@ public interface Product {
 	
 	public void setNotes(String notes);
 	public String getNotes();
+	
+	public void setActive(boolean isActive);
+	public boolean isActive();
+	
+	public void addReminder(ReminderImpl reminder);
+	public List<ReminderImpl> getAllReminders();
 	
 }
 

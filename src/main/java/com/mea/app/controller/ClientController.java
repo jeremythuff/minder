@@ -36,14 +36,45 @@ public class ClientController {
 		return client != null ? new ApiResImpl("success", client) : new ApiResImpl("failure", "No Client by that Id");
 	}
 	
+	@RequestMapping("/{clientId}/update")
+	public ApiResImpl update(@PathVariable("clientId") String clientIdString,
+			                 @RequestParam(value="name", defaultValue = "") String name,
+			                 @RequestParam(value="email", defaultValue = "") String email,
+			                 @RequestParam(value="location", defaultValue = "") String location,
+			                 @RequestParam(value="phonenumber", defaultValue = "") String phoneNumber,
+			                 @RequestParam(value="notes", defaultValue = "") String notes) throws Exception {
+		ClientImpl client = clientRepo.findOne(Long.parseLong(clientIdString));
+		
+		if(!"".equals(name)) client.setName(name);
+		if(!"".equals(email)) client.setEmail(email);
+		if(!"".equals(location)) client.setLocation(location);
+		if(!"".equals(phoneNumber)) client.setPhoneNumber(phoneNumber);
+		if(!"".equals(notes)) client.setNotes(notes);
+		
+		clientRepo.save(client);
+		
+		return client != null ? new ApiResImpl("success", client) : new ApiResImpl("failure", "No Client by that Id");
+	}
+	
 	
     @RequestMapping("/create")
-	public ApiResImpl create(@RequestParam(value="name") String name) throws Exception {
+	public ApiResImpl create(@RequestParam(value="name", defaultValue = "") String name,
+				             @RequestParam(value="email", defaultValue = "") String email,
+				             @RequestParam(value="location", defaultValue = "") String location,
+				             @RequestParam(value="phonenumber", defaultValue = "") String phoneNumber,
+				             @RequestParam(value="notes", defaultValue = "") String notes) throws Exception {
 		
+    	if("".equals(name)) return new ApiResImpl("failure", "Client creation requires a name."); 
     	if(clientRepo.getClientByName(name) != null) return new ApiResImpl("failure", "Client already exists."); 
     	
 		ClientImpl newClient = new ClientImpl();
 		newClient.setName(name);
+		if(!"".equals(email)) newClient.setEmail(email);
+		if(!"".equals(location)) newClient.setLocation(location);
+		if(!"".equals(phoneNumber)) newClient.setPhoneNumber(phoneNumber);
+		if(!"".equals(notes)) newClient.setNotes(notes);
+		
+		
 		
 		clientRepo.save(newClient);
 		

@@ -18,15 +18,10 @@ public class ClientImpl implements Client {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Column(name="name")
 	private String name;
-	
-	@Column(name="location")
 	private String location;
-	
-	@Column(name="email")
 	private String email;
+	private String notes;
 	
 	@Column(name="phone_number")
 	private String phoneNumber;
@@ -94,6 +89,16 @@ public class ClientImpl implements Client {
 	@Override
 	public List<ProductImpl> getAllProducts() {
 		return this.products;
+	}
+
+	@Override
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	@Override
+	public String getNotes() {
+		return this.notes;
 	}
 	
 }

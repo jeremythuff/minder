@@ -1,9 +1,11 @@
 package com.mea.app.model.impl;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.mea.app.model.Product;
@@ -20,6 +22,10 @@ public class ProductImpl implements Product {
 	private String type;
 	private String serial;
 	private String notes;
+	private boolean active;
+	
+	@OneToMany
+	private List<ReminderImpl> reminders;
 	
 	@Override
 	public long getId() {
@@ -65,6 +71,26 @@ public class ProductImpl implements Product {
 	@Override
 	public String getNotes() {
 		return this.notes;
+	}
+
+	@Override
+	public void setActive(boolean isActive) {
+		this.active = isActive;
+	}
+
+	@Override
+	public boolean isActive() {
+		return this.active;
+	}
+
+	@Override
+	public void addReminder(ReminderImpl reminder) {
+		this.reminders.add(reminder);
+	}
+
+	@Override
+	public List<ReminderImpl> getAllReminders() {
+		return this.reminders;
 	}
 
 }
