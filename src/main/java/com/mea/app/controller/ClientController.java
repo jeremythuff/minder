@@ -1,5 +1,8 @@
 package com.mea.app.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +29,10 @@ public class ClientController {
 	
 	
 	@RequestMapping("/list")
-	public ApiResImpl list() throws Exception {	
-		return new ApiResImpl("success", clientRepo.findAll());
+	public ApiResImpl list() throws Exception {
+		Map<String, Object> clientListObj = new HashMap<String, Object>();
+		clientListObj.put("list", clientRepo.findAll());
+		return new ApiResImpl("success", clientListObj);
 	}
 	
 	@RequestMapping("/{clientId}")
@@ -64,11 +69,12 @@ public class ClientController {
 				             @RequestParam(value="phonenumber", defaultValue = "") String phoneNumber,
 				             @RequestParam(value="notes", defaultValue = "") String notes) throws Exception {
 		
-    	if("".equals(name)) return new ApiResImpl("failure", "Client creation requires a name."); 
-    	if(clientRepo.getClientByName(name) != null) return new ApiResImpl("failure", "Client already exists."); 
+    	if(!"".equals(name)) {
+    		if(clientRepo.getClientByName(name) != null) return new ApiResImpl("failure", "Client already exists.");
+    	}
     	
 		ClientImpl newClient = new ClientImpl();
-		newClient.setName(name);
+		if(!"".equals(name)) newClient.setName(name);
 		if(!"".equals(email)) newClient.setEmail(email);
 		if(!"".equals(location)) newClient.setLocation(location);
 		if(!"".equals(phoneNumber)) newClient.setPhoneNumber(phoneNumber);
@@ -81,8 +87,8 @@ public class ClientController {
 		return new ApiResImpl("success", clientRepo.findAll());
 	}
     
-    @RequestMapping("/delete")
-	public ApiResImpl delete(@RequestParam(value="id", defaultValue = "") String id, 
+    @RequestMapping("/{clientId}/delete")
+	public ApiResImpl delete(@PathVariable("clientId") String id, 
 							 @RequestParam(value="name", defaultValue = "") String name) throws Exception {
     	
     	if("".equals(id) && "".equals(name)) return new ApiResImpl("failure", "No identifier given");

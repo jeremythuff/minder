@@ -1,5 +1,8 @@
 package com.mea.app.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +13,6 @@ import com.mea.app.model.Product;
 import com.mea.app.model.repo.ProductRepo;
 import com.mea.app.model.repo.ReminderRepo;
 import com.mea.app.model.impl.ApiResImpl;
-import com.mea.app.model.impl.ClientImpl;
 import com.mea.app.model.impl.ProductImpl;
 import com.mea.app.model.impl.ReminderImpl;
 
@@ -27,8 +29,10 @@ public class ProductController {
 	
 	
 	@RequestMapping("/list")
-	public ApiResImpl list() throws Exception {	
-		return new ApiResImpl("success", productRepo.findAll());
+	public ApiResImpl list() throws Exception {
+		Map<String, Object> productListObj = new HashMap<String, Object>();
+		productListObj.put("list", productRepo.findAll());
+		return new ApiResImpl("success", productListObj);
 	}
 	
 	@RequestMapping("/{productId}")

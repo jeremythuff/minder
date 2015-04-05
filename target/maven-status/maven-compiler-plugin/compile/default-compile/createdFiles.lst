@@ -1,3 +1,4 @@
+com/mea/app/config/CorsFilter.class
 com/mea/app/controller/ReminderController.class
 com/mea/app/config/Config.class
 com/mea/app/controller/ClientController.class
